@@ -44,77 +44,43 @@ public class JeuxDeDonneesTest {
 		assertThat(bulletin1.getRemunerationEmploye().getMatricule(), equalTo("M01"));
 	}
 
-//	@Test
-//	public void test_entreprise() {
-//		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getSiret(), equalTo("80966785000022"));
-//
-//		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getDenomination
-//
-//		(), equalTo("Dev Entreprise"));
-//
-//		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getCodeNaf(),
-//
-//				equalTo("6202A"));
-//
-//	}
-//
-//	@Test
-//
-//	public void test_cotisationsNonImposables() {
-//
-//		List<Cotisation> cotisationsNonImposables = bulletin1.getRemunerationEmploye(
-//
-//		).getProfilRemuneration()
-//
-//				.getCotisationsNonImposables();
-//
-//		Stream.of("EP01", "EP02", "EP03", "EP04", "EP05", "EP06", "EP07", "EP12",
-//
-//				"EP19", "EP20", "EPR1", "E900",
-//
-//				"EP28", "EP37")
-//
-//				.forEach(code -> assertTrue("verification code " + code,
-//
-//						cotisationsNonImposables.stream().filter(c -> c.getCode()
-//
-//								.equals(code)).findAny().isPresent()));
-//
-//	}
-//
-//	@Test
-//
-//	public void test_cotisationImposables() {
-//
-//		List<Cotisation> cotisationsImposables = bulletin1.getRemunerationEmploye()
-//
-//				.getProfilRemuneration()
-//
-//				.getCotisationsImposables();
-//
-//		Stream.of("SP01", "SP02")
-//
-//				.forEach(code -> assertTrue("verification code " + code,
-//
-//						cotisationsImposables.stream().filter(c -> c.getCode().equals
-//
-//						(code)).findAny().isPresent()));
-//
-//	}
-//
-//	@Test
-//
-//	public void test_grade() {
-//
-//		assertThat(bulletin1.getRemunerationEmploye().getGrade().getNbHeuresBase(),
-//
-//				equalTo(new BigDecimal("151.67")));
-//
-//		assertThat(bulletin1.getRemunerationEmploye().getGrade().getTauxBase(),
-//
-//				equalTo(new BigDecimal("11.0984")));
-//
-//	}
+	@Test
+	public void test_entreprise() {
+		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getSiret(), equalTo("80966785000022"));
+
+		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getDenomination(), equalTo("Dev Entreprise"));
+
+		assertThat(bulletin1.getRemunerationEmploye().getEntreprise().getCodeNaf(), equalTo("6202A"));
+	}
+
+	@Test
+	public void test_cotisationsNonImposables() {
+
+		List<Cotisation> cotisationsNonImposables = bulletin1.getRemunerationEmploye().getProfilRemuneration().getCotisationsNonImposables();
+		
+		Stream.of("EP01", "EP02", "EP03", "EP04", "EP05", "EP06", "EP07", "EP12", "EP19", "EP20", "EPR1", "E900", "EP28", "EP37")
+				.forEach(code -> assertTrue("verification code " + code, cotisationsNonImposables.stream()
+				.filter(c -> c.getCode().equals(code))
+				.findAny()
+				.isPresent()));
+	}
+
+	@Test
+	public void test_cotisationImposables() {
+		List<Cotisation> cotisationsImposables = bulletin1
+				.getRemunerationEmploye()
+				.getProfilRemuneration()
+				.getCotisationsImposables();
+
+		Stream.of("SP01", "SP02")
+		.forEach(code -> assertTrue("verification code " + code, cotisationsImposables.stream().filter(c -> c.getCode().equals(code)).findAny().isPresent()));
+	}
+
+	@Test
+	public void test_grade() {
+		assertThat(bulletin1.getRemunerationEmploye().getGrade().getNbHeuresBase(), equalTo(new BigDecimal("151.67")));
+		assertThat(bulletin1.getRemunerationEmploye().getGrade().getTauxBase(), equalTo(new BigDecimal("11.0984")));
+	}
 
 	@After
 
