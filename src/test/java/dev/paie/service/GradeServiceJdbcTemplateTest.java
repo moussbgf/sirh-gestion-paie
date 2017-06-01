@@ -1,18 +1,15 @@
 package dev.paie.service;
 
 import static org.junit.Assert.assertTrue;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Grade;
 

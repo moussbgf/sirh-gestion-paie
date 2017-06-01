@@ -1,9 +1,12 @@
 package dev.paie.entite;
 
 import java.math.BigDecimal;
+import javax.persistence.*;
 
+@Entity
 public class Cotisation {
 	
+	@Id
 	private Integer id;
 	private String code;
 	private String libelle;
@@ -42,9 +45,5 @@ public class Cotisation {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
-	
 
 }

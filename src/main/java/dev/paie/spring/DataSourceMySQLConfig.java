@@ -10,7 +10,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class DataSourceMySQLConfig {
 
 	@Bean
-
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
