@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -14,9 +16,11 @@ public class ProfilRemuneration {
 	private String code;
 	
 	@ManyToMany
+	@JoinTable(name="CotisationNonImposable",joinColumns=@JoinColumn(name="Profilremnonimp_id", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="cotisation_id", referencedColumnName="id"))
 	private List<Cotisation> cotisationsNonImposables;
 	
 	@ManyToMany
+    @JoinTable(name="CotisationImposable",joinColumns=@JoinColumn(name="Profilremimp_id", referencedColumnName="id"),inverseJoinColumns=  @JoinColumn(name="cotisation_id", referencedColumnName="id"))
 	private List<Cotisation> cotisationsImposables;
 	
 	@ManyToMany
