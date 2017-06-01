@@ -1,11 +1,19 @@
 package dev.paie.entite;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class RemunerationEmploye {
 	
+	@Id
 	private Integer id;
 	private String matricule;
+	@OneToOne
 	private Entreprise entreprise;
+	@OneToOne
 	private ProfilRemuneration profilRemuneration;
+	@OneToOne
 	private Grade grade;
 	
 	public String getMatricule() {

@@ -1,12 +1,15 @@
 package dev.paie.entite;
 
 import java.math.BigDecimal;
-
 import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 @Component
 public class Grade {
 	
+	@Id
 	private Integer id;
 	private String code;
 	private BigDecimal nbHeuresBase;
