@@ -1,4 +1,5 @@
 package dev.paie.entite;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;

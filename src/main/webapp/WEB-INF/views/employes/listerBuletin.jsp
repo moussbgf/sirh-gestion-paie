@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Accueil</title>
+<title>Lister bulletin</title>
 <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
 <link rel="stylesheet" href="bootstrap-3.3.7-dist/js/bootstrap.js">
 </head>
@@ -23,9 +23,9 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/paie/index.html">Home</a></li>
+					<li class="active"><a href="index.html">Home</a></li>
 					<li><a href="/paie/mvc/employes/lister">Employes</a></li>
-					<li><a href="/paie/mvc/bulletins/lister">Bulletins</a></li>
+					<li class="active"><a href="/paie/mvc/bulletins/lister">Bulletins</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
