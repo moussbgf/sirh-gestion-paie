@@ -14,13 +14,14 @@
 	href="<c:url value='/bootstrap-3.3.7-dist/css/bootstrap.css'></c:url>">
 <link rel="stylesheet"
 	href="<c:url value='/bootstrap-3.3.7-dist/js/bootstrap.js'></c:url>">
-<title>SGP - liste collaborateur</title>
+<title>SGP - liste employes</title>
 </head>
 
 <body class="container jumbotron">
 
-<br>
-	<br><br>
+	<br>
+	<br>
+	<br>
 	<br>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -49,13 +50,12 @@
 
 	<h1>liste des Employes</h1>
 
-	<p>Préfixe Matricule : ${prefixMatricule}</p>
-
+	<a href="/paie/mvc/employes/creer" type="button"
+		class="btn btn-sm btn-warning"> creer employer </a>
 
 
 	<br>
 	<br>
-	<h3>Liste des employes :</h3>
 	<br>
 
 	<div class="container">
@@ -65,14 +65,14 @@
 				<br>
 				<p class=" text-info">May 05,2014,03:00 pm</p>
 			</div> -->
-			<c:forEach var="collab" items="${ collaborateurs }">
+			<c:forEach var="employe" items="${ Employes }">
 				<div
 					class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad">
 
 
 					<div class="panel panel-info">
 						<div class="panel-heading">
-							<h3 class="panel-title">${collab.nom}${collab.prenom}</h3>
+							<h3 class="panel-title">${employe.nom}</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -89,26 +89,22 @@
 										<tbody>
 											<tr>
 												<td>Matricule:</td>
-												<td>${collab.matricule}</td>
+												<td>${employe.matricule}</td>
 											</tr>
 											<tr>
 												<td>Adresse:</td>
-												<td>${collab.adresse}</td>
+												<td>${employe.adresse}</td>
 											</tr>
 											<tr>
 												<td>Date de Naissance</td>
-												<td>${collab.dateDeNaissance}</td>
+												<td>${employe.dateDeNaissance}</td>
 											</tr>
 
 											<tr>
 											<tr>
 												<td>Numéro de sécu:</td>
-												<td>${collab.numSecu}</td>
+												<td>${employe.numSecu}</td>
 											</tr>
-											<tr>
-												<td>Email Pro:</td>
-												<td><a href="#"
-													style="display: inline-block; word-break: break-word;">${collab.emailPro}</a></td>
 												<!-- 											</tr>
 											<td>Phone Number</td>
 											<td>123-4567-890(Landline)<br> <br>555-4567-890(Mobile)
@@ -125,7 +121,7 @@
 								type="button" class="btn btn-sm btn-primary"><i
 								class="glyphicon glyphicon-envelope"></i></a> <span
 								class="pull-right"> <a
-								href="editer?matricule=${collab.matricule}"
+								href="editer?matricule=${employe.matricule}"
 								data-original-title="Edit this user" data-toggle="tooltip"
 								type="button" class="btn btn-sm btn-warning"><i
 									class="glyphicon glyphicon-edit"></i> Modifier</a> <a
@@ -140,7 +136,6 @@
 			</c:forEach>
 		</div>
 	</div>
-
 </body>
 
 </html>

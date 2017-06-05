@@ -14,6 +14,13 @@ public class Periode {
 	private Integer id;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
+	
+	
+	
+	public Periode() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Periode(LocalDate dateDebut, LocalDate dateFin) {
 		super();

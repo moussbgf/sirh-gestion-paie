@@ -2,6 +2,8 @@
 <%@page import="dev.sgp.entite.Collaborateur"%>
 <%@page import="dev.sgp.entite.Departement"%> --%>
 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ page language="java" pageEncoding="UTF-8"%>
@@ -21,119 +23,105 @@
 
 <body class="container jumbotron">
 
-
-	<h1>Créer Employe</h1>
-
-	<p>Préfixe Matricule : ${prefixMatricule}</p>
-
-
-
-
-
-
-
-
-
-
-
-	<br>
-	<br>
-	<h3>Liste des collaborateur :</h3>
-	<br>
-
-	<div class="container">
-		<div class="row">
-			<!-- 			<div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-				<A href="edit.html">Edit Profile</A> <A href="edit.html">Logout</A>
-				<br>
-				<p class=" text-info">May 05,2014,03:00 pm</p>
-			</div> -->
-			<c:forEach var="collab" items="${ collaborateurs }">
-				<div
-					class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad">
-
-
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title">${collab.nom}${collab.prenom}</h3>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-md-3 col-lg-3 " align="center">
-									<img alt="User Pic"
-										src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png"
-										class="img-circle img-responsive"> <br /> <a href="#"
-										class="btn btn-sm btn-primary pull-right"><span
-										class="glyphicon glyphicon-search"></span> Détails</a>
-								</div>
-
-								<div style="word-wrap: break-word;" class=" col-md-9 col-lg-9 ">
-									<table class="jumbotron table table-user-information">
-										<tbody>
-											<tr>
-												<td>Matricule:</td>
-												<td>${collab.matricule}</td>
-											</tr>
-											<tr>
-												<td>Adresse:</td>
-												<td>${collab.adresse}</td>
-											</tr>
-											<tr>
-												<td>Date de Naissance</td>
-												<td>${collab.dateDeNaissance}</td>
-											</tr>
-
-											<tr>
-											<tr>
-												<td>Numéro de sécu:</td>
-												<td>${collab.numSecu}</td>
-											</tr>
-											<tr>
-												<td>Email Pro:</td>
-												<td><a href="#"
-													style="display: inline-block; word-break: break-word;">${collab.emailPro}</a></td>
-												<!-- 											</tr>
-											<td>Phone Number</td>
-											<td>123-4567-890(Landline)<br> <br>555-4567-890(Mobile)
-											</td>
-
-											</tr> -->
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<a data-original-title="Broadcast Message" data-toggle="tooltip"
-								type="button" class="btn btn-sm btn-primary"><i
-								class="glyphicon glyphicon-envelope"></i></a> <span
-								class="pull-right"> <a
-								href="editer?matricule=${collab.matricule}"
-								data-original-title="Edit this user" data-toggle="tooltip"
-								type="button" class="btn btn-sm btn-warning"><i
-									class="glyphicon glyphicon-edit"></i> Modifier</a> <a
-								data-original-title="Remove this user" data-toggle="tooltip"
-								type="button" class="btn btn-sm btn-danger"><i
-									class="glyphicon glyphicon-remove"></i> Supprimer</a>
-							</span>
-						</div>
-
-					</div>
-				</div>
-			</c:forEach>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/paie/index.html">Pro RH</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/paie/index.html">Home</a></li>
+					<li class="active"><a href="/paie/mvc/employes/lister">Employes</a></li>
+					<li><a href="/paie/mvc/bulletins/lister">Bulletins</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
 		</div>
-	</div>
+	</nav>
 
+	<br>
 
+	<a href="/paie/mvc/employes/lister" class="btn btn-lg btn-warning"><span
+		class="glyphicon glyphicon-arrow-left"> Retour</span> </a>
 
+	<br>
+	<br>
 
+	<form:form class="form-horizontal" modelAttribute="employe">
+		<fieldset>
 
+			<!-- Form Name -->
+			<legend>
+				<h1 align="center">Créer un employé</h1>
+			</legend>
 
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="matricule">Matricule
+					: </label>
+				<div class="col-md-2">
+					 <%-- <form:input path="matricule" class="form-control input-md" /> --%>
+				</div>
+			</div>
 
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="entreprises">Entreprise
+					:</label>
+				<div class="col-md-2">
+					<select id="entreprises" name="entreprises" class="form-control">
+						<option value="-1" selected></option>
+						<c:forEach var="entreprise" items="${ listeEntreprise }">
+							<option value="${ entreprise.id }">${ entreprise.denomination }</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
 
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="profiles">Profile
+					: </label>
+				<div class="col-md-2">
+					<select id="profiles" name="profiles" class="form-control">
+						<option value="-1" selected></option>
+						<c:forEach var="profile" items="${ listProfile }">
+							<option value="${ profile.id }">${ profile.code }</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
 
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="grades">Grade</label>
+				<div class="col-md-2">
+					<select id="grades" name="grades" class="form-control">
+						<option value="-1" selected></option>
+						<c:forEach var="grade" items="${ listeGrade }">
+							<option value="${ grade.id }">${ grade.code }</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
 
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="envoyer"></label>
+				<div class="col-md-4">
+					<button id="envoyer" name="envoyer" class="btn btn-success">Envoyer</button>
+				</div>
+			</div>
 
+		</fieldset>
+	</form:form>
 
 
 </body>

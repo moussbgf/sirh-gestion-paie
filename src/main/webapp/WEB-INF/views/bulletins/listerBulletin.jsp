@@ -1,10 +1,18 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page language="java" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lister bulletin</title>
-<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
-<link rel="stylesheet" href="bootstrap-3.3.7-dist/js/bootstrap.js">
+<link rel="stylesheet"
+	href="<c:url value='/bootstrap-3.3.7-dist/css/bootstrap.css'></c:url>">
+<link rel="stylesheet"
+	href="<c:url value='/bootstrap-3.3.7-dist/js/bootstrap.js'></c:url>">
+<title>SIRH - Paie</title>
 </head>
 <body class="container jumbotron">
 
@@ -23,7 +31,7 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="/paie/index.html">Home</a></li>
 					<li><a href="/paie/mvc/employes/lister">Employes</a></li>
 					<li class="active"><a href="/paie/mvc/bulletins/lister">Bulletins</a></li>
 				</ul>
@@ -32,6 +40,10 @@
 		</div>
 	</nav>
 
-	<h1>SIRH - Gestion de la paie</h1>
+	<h1>SIRH - Lister bulletin - ok !</h1>
+	
+	
+		<a href="/paie/mvc/bulletins/creer" type="button"
+		class="btn btn-sm btn-warning"> creer employer </a>
 </body>
 </html>
