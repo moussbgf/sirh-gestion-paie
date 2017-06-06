@@ -5,6 +5,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +39,7 @@ public class BulletinController {
 	CalculerRemunerationServiceSimple calculerRemunerationService;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/creer")
+	@Secured({"ROLE_ADMINISTRATEUR"})
 	public ModelAndView creerBulletin() {
 		
 		List<Periode> listePeriodes = periodeRepository.findAll();
@@ -61,6 +63,7 @@ public class BulletinController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creer")
+	@Secured({"ROLE_ADMINISTRATEUR"})
 	public String saveBulletin(@ModelAttribute("bulletin") BulletinForm bulletinForm, BindingResult result, Model model,
 			final RedirectAttributes redirectAttributes) {
 
@@ -87,6 +90,7 @@ public class BulletinController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/lister")
+	@Secured({"ROLE_UTILISATEUR", "ROLE_ADMINISTRATEUR"})
 	public ModelAndView listerBulletin() {
 
 		ModelAndView mv = new ModelAndView();

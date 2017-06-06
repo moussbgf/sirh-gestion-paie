@@ -63,11 +63,12 @@
 			<tbody>
 
 				<c:forEach var="bulletin" items="${ bulletins }">
+				
 					<tr>
 						<td>${ bulletin.dateForm() }</td>
 						<td>${ bulletin.periode }</td>
 						<td>${ bulletin.remunerationEmploye.matricule }</td>
-						<td>En cours... ${ calcul.calculer(bulletin).salaireBrut }</td>
+						<td>${ calcul.calculer(bulletin).salaireBrut }</td>
 						<td>En cours... ${ calcul.calculer(bulletin).netImposable }</td>
 						<td>En cours... ${ calcul.calculer(bulletin).netAPayer }</td>
 						<td><a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Visualiser</a></td>
