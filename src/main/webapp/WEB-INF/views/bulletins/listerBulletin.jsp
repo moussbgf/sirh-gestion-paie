@@ -67,9 +67,9 @@
 						<td>${ bulletin.dateForm() }</td>
 						<td>${ bulletin.periode }</td>
 						<td>${ bulletin.remunerationEmploye.matricule }</td>
-						<td>en cours..</td>
-						<td>en cours..</td>
-						<td>en cours..</td>
+						<td>En cours... ${ calcul.calculer(bulletin).salaireBrut }</td>
+						<td>En cours... ${ calcul.calculer(bulletin).netImposable }</td>
+						<td>En cours... ${ calcul.calculer(bulletin).netAPayer }</td>
 						<td><a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Visualiser</a></td>
 					</tr>
 				</c:forEach>
@@ -78,7 +78,12 @@
 		</table>
 	</div>
 
-
+<!-- 	private String salaireDeBase;
+	private String salaireBrut;
+	private String totalRetenueSalarial;
+	private String totalCotisationsPatronales;
+	private String netImposable;
+	private String netAPayer; -->
 
 
 

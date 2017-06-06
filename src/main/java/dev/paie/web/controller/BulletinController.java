@@ -3,6 +3,7 @@ package dev.paie.web.controller;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import dev.paie.entite.BulletinSalaire;
 import dev.paie.entite.Periode;
 import dev.paie.entite.RemunerationEmploye;
 import dev.paie.repository.BulletinSalaireRemunerationRepository;
 import dev.paie.repository.PeriodeRepository;
 import dev.paie.repository.RemunerationEmployeRepository;
+import dev.paie.service.CalculerRemunerationServiceSimple;
 import dev.paie.web.form.BulletinForm;
-import dev.paie.web.form.EmployeForm;
 
 @Controller
 @RequestMapping("/bulletins")
@@ -31,6 +33,9 @@ public class BulletinController {
 	RemunerationEmployeRepository remunerationEmployeRepository;
 	@Autowired
 	BulletinSalaireRemunerationRepository bulletinSalaireRemunerationRepository;
+	
+	@Autowired
+	CalculerRemunerationServiceSimple calculerRemunerationService;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/creer")
 	public ModelAndView creerBulletin() {
@@ -45,6 +50,8 @@ public class BulletinController {
 		mv.addObject("listePeriodes", listePeriodes);
 		mv.addObject("listEmployes", listEmployes);
 		mv.addObject("bulletin", new BulletinSalaire());
+		
+		mv.addObject("calcul", calculerRemunerationService);
 
 		
 		// String matricule = UUID.randomUUID().toString();
@@ -85,10 +92,12 @@ public class BulletinController {
 		ModelAndView mv = new ModelAndView();
 
 		List<BulletinSalaire> listeBulletins = bulletinSalaireRemunerationRepository.findAll();
-
+		
 		mv.setViewName("bulletins/listerBulletin");
 		
 		mv.addObject("bulletins", listeBulletins);
+		
+		mv.addObject("calcul", calculerRemunerationService);
 		
 		return mv;
 
