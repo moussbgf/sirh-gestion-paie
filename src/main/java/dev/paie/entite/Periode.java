@@ -52,4 +52,11 @@ public class Periode {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return " " + dateDebut + " --> " + dateFin + " ";
+	}
+	
+	
+
 }

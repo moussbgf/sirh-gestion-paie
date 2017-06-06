@@ -31,7 +31,7 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li ><a href="/paie/index.html">Home</a></li>
+					<li><a href="/paie/index.html">Home</a></li>
 					<li><a href="/paie/mvc/employes/lister">Employes</a></li>
 					<li class="active"><a href="activites">Activités</a></li>
 				</ul>
@@ -39,68 +39,72 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	
+
 	<br>
 
-	
+
 	<a href="/paie/mvc/bulletins/lister" class="btn btn-lg btn-warning"><span
 		class="glyphicon glyphicon-arrow-left"> Retour</span> </a>
 
+
 	<br>
 	<br>
-	
-	<form class="form-horizontal">
-        <fieldset>
-            <!-- Form Name -->
-            <legend>
-                <h1 align="center">Créer un Bulletin</h1>
-            </legend>
-            <!-- Select Profil -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="selectbasic">Période</label>
-                <div class="col-md-4">
-                    <select id="selectbasic" name="selectbasic" class="form-control">
-                        <c:forEach var="periode" items="${listePeriodes}">
-                            <option value="${periode.id}">${periode.dateDebut}  -  ${periode.dateFin}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <!-- Select Grade -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="selectbasic">Matricule</label>
-                <div class="col-md-4">
-                    <select id="selectbasic" name="selectbasic" class="form-control">
-                        <c:forEach var="remun" items="${listEmployes}">
-                            <option value="${remun.matricule}">${remun.matricule}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <!-- Input Periode -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="textinput">Prime exceptionnelle</label>
-                <div class="col-md-4">
-                    <input id="textinput" name="textinput" type="text" placeholder=""
-                        class="form-control input-md">
-                </div>
-            </div>
-            <!-- Button -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="singlebutton"></label>
-                <div class="col-md-4">
-                    <button id="singlebutton" name="singlebutton"
-                        class="btn btn-primary">Créer</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-	
-	
-		<br>
 	<br>
-	<br>
-	
-	
+
+
+	<form:form class="form-horizontal" modelAttribute="bulletin">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>
+				<h1 align="center">Créer un bulletin</h1>
+			</legend>
+
+
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="periodes">Periodes
+					:</label>
+				<div class="col-md-2">
+					<form:select path="periode" class="form-control">
+						<form:options itemValue="id" items="${listePeriodes}" />
+					</form:select>
+				</div>
+			</div>
+
+
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="employes">Employés
+					: </label>
+				<div class="col-md-2">
+					<form:select path="remunerationEmploye" class="form-control">
+						<form:options itemValue="id" items="${listEmployes}" />
+					</form:select>
+				</div>
+			</div>
+
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="primes">Prime Exceptionelle
+					: </label>
+				<div class="col-md-2">
+					<form:input path="primeExceptionnelle" class="form-control input-md" />
+				</div>
+			</div>
+
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="envoyer"></label>
+				<div class="col-md-4">
+					<button id="envoyer" name="envoyer" class="btn btn-success">Payer !</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form:form>
+
 </body>
 </html>

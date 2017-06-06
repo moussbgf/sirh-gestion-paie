@@ -19,11 +19,6 @@
 
 <body class="container jumbotron">
 
-	<br>
-	<br>
-	<br>
-	<br>
-
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -46,12 +41,46 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-
-
-	<h1>liste des Employes</h1>
+	
+	<br><br>
 
 	<a href="/paie/mvc/employes/creer" type="button"
-		class="btn btn-sm btn-warning"> creer employer </a>
+		class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-plus"></span> créer employer</a>
+
+	<br>
+	<br>
+	<br>
+
+
+	<div class="container">
+		<h2>Liste des bulletins salaire</h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Date Heure de création</th>
+					<th>Matricule</th>
+					<th>Grade</th>
+					<th>Entreprise</th>
+					<th>profile</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach var="employe" items="${ employes }">
+					<tr>
+						<td>${ employe.dateForm() }</td>
+						<td>${ employe.matricule }</td>
+						<td>${ employe.grade.code }</td>
+						<td>${ employe.entreprise.denomination }</td>
+						<td>${ employe.profilRemuneration.code }</td>
+						<td><a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Visualiser</a></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+	</div>
 
 
 	<br>
@@ -65,14 +94,14 @@
 				<br>
 				<p class=" text-info">May 05,2014,03:00 pm</p>
 			</div> -->
-			<c:forEach var="employe" items="${ Employes }">
+			<c:forEach var="employe" items="${ employes }">
 				<div
 					class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 toppad">
 
 
 					<div class="panel panel-info">
 						<div class="panel-heading">
-							<h3 class="panel-title">${employe.nom}</h3>
+							<h3 class="panel-title">${employe.matricule}</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -92,20 +121,20 @@
 												<td>${employe.matricule}</td>
 											</tr>
 											<tr>
-												<td>Adresse:</td>
-												<td>${employe.adresse}</td>
+												<td>Date creation:</td>
+												<td></td>
 											</tr>
 											<tr>
-												<td>Date de Naissance</td>
-												<td>${employe.dateDeNaissance}</td>
+												<td>Garde:</td>
+												<td>${employe.grade}</td>
 											</tr>
 
 											<tr>
 											<tr>
-												<td>Numéro de sécu:</td>
-												<td>${employe.numSecu}</td>
+												<td>Action:</td>
+												<td></td>
 											</tr>
-												<!-- 											</tr>
+											<!-- 											</tr>
 											<td>Phone Number</td>
 											<td>123-4567-890(Landline)<br> <br>555-4567-890(Mobile)
 											</td>

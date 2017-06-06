@@ -69,4 +69,11 @@ public class ProfilRemuneration {
 		this.avantages = avantages;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.code;
+	}
+	
+	
 }

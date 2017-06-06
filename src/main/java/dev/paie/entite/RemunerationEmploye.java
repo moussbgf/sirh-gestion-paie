@@ -1,6 +1,10 @@
 package dev.paie.entite;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -8,6 +12,7 @@ import javax.persistence.OneToOne;
 public class RemunerationEmploye {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String matricule;
 	@OneToOne
@@ -16,6 +21,9 @@ public class RemunerationEmploye {
 	private ProfilRemuneration profilRemuneration;
 	@OneToOne
 	private Grade grade;
+	
+	private ZonedDateTime dateCreation;
+	
 	
 	public String getMatricule() {
 		return matricule;
@@ -51,6 +59,21 @@ public class RemunerationEmploye {
 	
 	
 	
+	public ZonedDateTime getDateCreation() {
+		return dateCreation;
+	}
 	
+	public void setDateCreation(ZonedDateTime dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+	
+	public String dateForm() {
+        return dateCreation.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"));
+    }
+	
+	@Override
+	public String toString() {
+		return " " + matricule + " ";
+	}
 
 }

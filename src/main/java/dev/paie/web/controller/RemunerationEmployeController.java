@@ -1,12 +1,12 @@
 package dev.paie.web.controller;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +21,7 @@ import dev.paie.repository.EntrepriseRepository;
 import dev.paie.repository.GradeRepository;
 import dev.paie.repository.ProfileRemunerationRepository;
 import dev.paie.repository.RemunerationEmployeRepository;
+import dev.paie.web.form.EmployeForm;
 
 @Controller
 @RequestMapping("/employes")
@@ -50,8 +51,7 @@ public class RemunerationEmployeController {
 		mv.addObject("listeGrade", listeGrade);
 		mv.addObject("listeEntreprise", listeEntreprise);
 		mv.addObject("listProfile", listProfile);
-
-		RemunerationEmploye employe = new RemunerationEmploye();
+		mv.addObject("employe", new EmployeForm());
 
 		// String matricule = UUID.randomUUID().toString();
 
@@ -59,18 +59,31 @@ public class RemunerationEmployeController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-
-	public String saveEmploye(@ModelAttribute("employe") RemunerationEmploye employe, BindingResult result, Model model,
+	@RequestMapping(method = RequestMethod.POST, path = "/creer")
+	public String saveEmploye(@ModelAttribute("employe") EmployeForm employeForm, BindingResult result, Model model,
 			final RedirectAttributes redirectAttributes) {
-
-		RemunerationEmploye employe2 = employe;
-
+		
+		Grade grade = gradeRepository.findOne(employeForm.getGrade());
+		Entreprise entreprise = entrepriseRepository.findOne(employeForm.getEntreprise());
+		ProfilRemuneration profile = profileRemunerationRepository.findOne(employeForm.getProfilRemuneration());
+		
+		RemunerationEmploye employe = new RemunerationEmploye();
+		
+		employe.setMatricule(employeForm.getMatricule());
+		employe.setGrade(grade);
+		employe.setEntreprise(entreprise);
+		employe.setProfilRemuneration(profile);
+		employe.setDateCreation(ZonedDateTime.now());
+		
+		remunerationEmployeRepository.save(employe);
+		
 		// clientService.make(client);
 		
-		remunerationEmployeRepository.save(employe2);
 		
-		return "redirect:/lister";
+		
+		//remunerationEmployeRepository.save(employe2);
+		
+		return "redirect:/mvc/employes/lister";
 
 	}
 
@@ -79,20 +92,11 @@ public class RemunerationEmployeController {
 
 		ModelAndView mv = new ModelAndView();
 
-		/*
-		 * 
-		 * Acces aux données via repository / creer un repo par classe d'accés
-		 * 
-		 * 
-		 * 
-		 */
-
-		List<Grade> listeGrade = gradeRepository.findAll();
+		List<RemunerationEmploye> employes = remunerationEmployeRepository.findAll();
 
 		mv.setViewName("employes/listerEmployes");
 
-		mv.addObject("prefixMatricule", "M00");
-		mv.addObject("listeGrade", listeGrade);
+		mv.addObject("employes", employes);
 
 		return mv;
 

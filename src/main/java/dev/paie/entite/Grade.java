@@ -56,6 +56,11 @@ public class Grade {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return code;
+	}
 	
 	
 

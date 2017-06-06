@@ -39,11 +39,48 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-
-	<h1>SIRH - Lister bulletin - ok !</h1>
-	
+	<br><br>
 	
 		<a href="/paie/mvc/bulletins/creer" type="button"
-		class="btn btn-sm btn-warning"> creer employer </a>
+		class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-plus"></span> Créer bulletin</a>
+	
+	<br>
+	
+	<div class="container">
+		<h2>Liste des bulletins salaire</h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Date Heure de création</th>
+					<th>Periode</th>
+					<th>Matricule</th>
+					<th>Salaire Brut</th>
+					<th>Net imposable</th>
+					<th>Net à payer</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach var="bulletin" items="${ bulletins }">
+					<tr>
+						<td>${ bulletin.dateForm() }</td>
+						<td>${ bulletin.periode }</td>
+						<td>${ bulletin.remunerationEmploye.matricule }</td>
+						<td>en cours..</td>
+						<td>en cours..</td>
+						<td>en cours..</td>
+						<td><a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Visualiser</a></td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
 </body>
 </html>

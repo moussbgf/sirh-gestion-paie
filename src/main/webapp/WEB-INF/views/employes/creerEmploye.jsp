@@ -67,7 +67,7 @@
 				<label class="col-md-4 control-label" for="matricule">Matricule
 					: </label>
 				<div class="col-md-2">
-					 <%-- <form:input path="matricule" class="form-control input-md" /> --%>
+					<form:input path="matricule" class="form-control input-md" />
 				</div>
 			</div>
 
@@ -76,12 +76,9 @@
 				<label class="col-md-4 control-label" for="entreprises">Entreprise
 					:</label>
 				<div class="col-md-2">
-					<select id="entreprises" name="entreprises" class="form-control">
-						<option value="-1" selected></option>
-						<c:forEach var="entreprise" items="${ listeEntreprise }">
-							<option value="${ entreprise.id }">${ entreprise.denomination }</option>
-						</c:forEach>
-					</select>
+					<form:select path="entreprise" class="form-control">
+						<form:options itemValue="id" items="${listeEntreprise}" />
+					</form:select>
 				</div>
 			</div>
 
@@ -90,12 +87,9 @@
 				<label class="col-md-4 control-label" for="profiles">Profile
 					: </label>
 				<div class="col-md-2">
-					<select id="profiles" name="profiles" class="form-control">
-						<option value="-1" selected></option>
-						<c:forEach var="profile" items="${ listProfile }">
-							<option value="${ profile.id }">${ profile.code }</option>
-						</c:forEach>
-					</select>
+					<form:select path="profilRemuneration" class="form-control">
+						<form:options itemValue="id" items="${listProfile}" />
+					</form:select>
 				</div>
 			</div>
 
@@ -103,12 +97,9 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="grades">Grade</label>
 				<div class="col-md-2">
-					<select id="grades" name="grades" class="form-control">
-						<option value="-1" selected></option>
-						<c:forEach var="grade" items="${ listeGrade }">
-							<option value="${ grade.id }">${ grade.code }</option>
-						</c:forEach>
-					</select>
+					<form:select path="grade" class="form-control">
+						<form:options itemValue="id" items="${listeGrade}" />
+					</form:select>
 				</div>
 			</div>
 
