@@ -63,14 +63,14 @@
 			<tbody>
 
 				<c:forEach var="bulletin" items="${ bulletins }">
-				
+<%-- 				<c:set var="calcule" value="${ calcul.calculer(bulletin) }" scope="page"></c:set> --%>
 					<tr>
-						<td>${ bulletin.dateForm() }</td>
+						<td>${calcule} ${ bulletin.dateForm() }</td>
 						<td>${ bulletin.periode }</td>
 						<td>${ bulletin.remunerationEmploye.matricule }</td>
 						<td>${ calcul.calculer(bulletin).salaireBrut }</td>
-						<td>En cours... ${ calcul.calculer(bulletin).netImposable }</td>
-						<td>En cours... ${ calcul.calculer(bulletin).netAPayer }</td>
+<%-- 						<td>${ calcul.calculer(bulletin).netImposable } </td> --%>
+<%-- 						<td>${ calcul.calculer(bulletin).netAPayer }</td> --%>
 						<td><a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Visualiser</a></td>
 					</tr>
 				</c:forEach>
